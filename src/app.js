@@ -7,6 +7,10 @@ const forecast = require('./utils/forecast.js');
 
 const app = express();
 
+// When we deploy our application to heroku has it's own port which it will be set in environment path key: pair variable at OS level,
+// so we have set it for heroku platform and as well as for localhost to server listen on correct port.
+const port = process.env.PORT || 3000;
+
 const viewsPath = path.join(__dirname, '../templates/views');
 
 app.set('view engine', 'hbs');
@@ -87,6 +91,6 @@ app.get('*', (req, res) => {
 });
 
 // We have started server on port 3000 which is common port for development.
-app.listen(3000, () => {
-    console.log('Server is up on port 3000');
+app.listen(port, () => {
+    console.log('Server is up on port', port);
 });
